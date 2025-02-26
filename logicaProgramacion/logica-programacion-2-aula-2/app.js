@@ -1,6 +1,8 @@
 let numeroSecreto = 0;
 let numintentos = 0;
 let intentosRestantes = 0;
+let listaNumerosSorteados = [];
+let numeroMaximo = 3;
 
 function asignatTextoElemento (elemento, texto){
     let titulo = document.querySelector(elemento);
@@ -29,6 +31,7 @@ function VerificarIntento(){
         limpiarCaja();
     }
     if(intentosRestantes === 0){
+        document.getElementById('reiniciar').removeAttribute('disabled');
         document.getElementById('intento').setAttribute('disabled', 'true');
         asignatTextoElemento('p','Lo siento perdiste tus 3 intentos');
         
@@ -42,27 +45,43 @@ function limpiarCaja(){
 }
 
 function generarNumeroSecreto() {
-    let numeroSecreto = Math.floor(Math.random()*10+1)   
-    return numeroSecreto;
+    let numeroGenerado = Math.floor(Math.random()*numeroMaximo+1) ;
+    //se sortearon todos los numeros
+    if(listaNumerosSorteados.length === numeroMaximo){
+        document.getElementById('intento').setAttribute('disabled', 'true');
+        asignatTextoElemento('p','Lo siento ya se sortearon todos los numeros');
+        return;
+    } else {
+        //si el numero sorteado ya esta en la lista
+        if(listaNumerosSorteados.includes(numeroGenerado)){
+            return generarNumeroSecreto();
+        }else{
+            listaNumerosSorteados.push(numeroGenerado);
+            return numeroGenerado;
+        }
+
+    }
 }
 
 function condicionesIniciales(){
     limpiarCaja();
-    asignatTextoElemento('h1', 'Juego del numer osecreto');
-    asignatTextoElemento('p', `Indica un numero del 1 al 10, considera que solo tienes ${intentosRestantes} intentos`);
-    numeroSecreto = generarNumeroSecreto();
     intentosRestantes = 3;
+    asignatTextoElemento('h1', 'Juego del numer osecreto');
+    asignatTextoElemento('p', `Indica un numero del 1 al ${numeroMaximo}, considera que solo tienes ${intentosRestantes} intentos`);
+    numeroSecreto = generarNumeroSecreto();
     numintentos = 0;
 }
 
 function reiniciarJuego(){
     //limpiar la caja
     limpiarCaja();
-    //iniciar condiciones iniciales
-    condicionesIniciales();
+
     //seshabilitar el boton
         document.getElementById('intento').removeAttribute('disabled');
         document.getElementById('reiniciar').setAttribute('disabled', 'true');
+
+    //iniciar condiciones iniciales
+    condicionesIniciales();    
 }
 
 condicionesIniciales();
