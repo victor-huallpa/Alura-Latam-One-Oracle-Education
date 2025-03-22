@@ -1,0 +1,64 @@
+header {
+  text-align: center;
+  font-size: 30px;
+  color: #279EFF;
+}
+
+main, html {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  height: 50%;
+  background-color: #0C356A;
+}
+
+.container {
+  padding-right:45px ;
+  display: block;
+  text-align: center;
+  color: #279EFF;
+}
+
+.insertar{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 45px;
+}
+
+.button {
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 24px;
+  border: none;
+  background-color: #3498db;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button:hover {
+  background-color: #2980b9;
+}
+.textoU{
+  font-size: 25px;
+  width: 350px;
+  height: 50px;
+  border-radius: 15px;
+  border: 3.5px solid #3498db;
+  margin-right: 10px;
+  text-align: center;
+  font-weight: bold;
+  background-color: white;
+}
+.textoU:focus{
+  outline: none;
+  border-color: #279EFF;
+  box-shadow: 0 0 50px rbga(30, 144, 255, 0.8);
+}
+
+h3{
+  font-size: 25px;
+  color: white;
+}
